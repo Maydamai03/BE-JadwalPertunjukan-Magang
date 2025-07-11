@@ -12,14 +12,17 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy everything
+# Copy semua file ke dalam container
 COPY . .
 
-# Install dependencies
+# Beri izin eksekusi pada start.sh
+RUN chmod +x ./start.sh
+
+# Install dependensi PHP dari composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port
+# Expose port Laravel
 EXPOSE 8000
 
-# Run Laravel built-in server
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Gunakan start.sh sebagai entrypoint
+CMD ["./start.sh"]

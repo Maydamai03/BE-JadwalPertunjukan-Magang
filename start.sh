@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Tunggu MySQL siap
 until nc -z -v -w30 $DB_HOST $DB_PORT
 do
   echo "⏳ Menunggu database di $DB_HOST:$DB_PORT..."

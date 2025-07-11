@@ -14,6 +14,9 @@ COPY . .
 RUN chmod +x start.sh
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 8000
+EXPOSE 8080
+
+ENV APP_ENV=production
+
 
 CMD ["./start.sh"]
